@@ -5,7 +5,7 @@ class Project
     @details = attributes["details"] || attributes[:details]
     @id = attributes["id"].to_i || attributes[:id].to_i
     if @id ==  0 then @id = nil end
-    if @details = '' then @details = nil end
+    if @details == '' then @details = nil end
   end
 
   def save

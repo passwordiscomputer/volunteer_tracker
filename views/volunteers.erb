@@ -1,0 +1,32 @@
+<div class="w3-padding-large" id="main">
+  <!-- Header/Home -->
+  <header class="w3-container w3-padding-32 w3-center w3-black" id="home">
+    <h1 class="w3-jumbo"><u><span class="w3-hide-small">We are RED</span></u></h1>
+    <h2>Add a Volunteer below</h2>
+    <p></p>
+  </header>
+
+
+
+  <form action="/volunteers" method="post">
+    <p><input class="w3-input w3-padding-16" type="text" placeholder="Volunteer Name" required name="name"></p>
+    <p>Add to project <select name="project_id">
+      <% @project_list.each do |project| %>
+        <option value="<%= project.id %>"><%= project.title %></option>
+      <% end %>
+    </select></p>
+    <button class="w3-button w3-light-grey w3-padding-large" type="submit">
+      <i class="far fa-hand-peace"></i> &nbsp;&nbsp;CHANGE LIVES
+    </button>
+    </p>
+  </form>
+  <% @volunteer_list.each() do |volunteer| %>
+  <div class="w3-row w3-center w3-padding-16 w3-section w3-light-grey">
+        <div class="w3-center w3-section">
+          <span class="w3-xlarge"><a href="volunteers/<%= volunteer.id %>"><%= volunteer.name %></a></span><br>
+          Current Project :<%= Project.find(volunteer.project_id).title %>
+        </div>
+      </div>
+  <% end %>
+
+</div>
