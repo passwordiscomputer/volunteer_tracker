@@ -13,7 +13,7 @@ class Project
   end
 
   def == other_project
-    (self.title == other_project.title) && (self.id == other_project.id)
+     (self.id == other_project.id)
   end
 
   def self.all
@@ -28,6 +28,20 @@ class Project
   def self.find(id)
     project = DB.exec("SELECT * from projects WHERE id = #{id}")
     project = Project.new(project.first)
+  end
+
+  def volunteers
+    returned_volunteers = DB.exec("SELECT * from volunteers WHERE project_id = #{id}")
+    volunteers = []
+    returned_volunteers.each() do |volunteer|
+      volunteers.push(Project.new(volunteer))
+      end
+    volunteers
+  end
+
+  def update(attributes)
+    DB.exec("UPDATE projects SET title = '#{attributes[:title]}' WHERE id = #{@id};")
+    @title = attributes[:title]
   end
 
 end
