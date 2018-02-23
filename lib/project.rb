@@ -8,4 +8,8 @@ class Project
   def save
     @id = DB.exec("INSERT INTO projects (title, details) VALUES ('#{@title}', '#{@details}') RETURNING id;").first["id"].to_i;
   end
+
+  def == other_project
+    (self.title == other_project.title) && (self.id == other_project.id)
+  end
 end
