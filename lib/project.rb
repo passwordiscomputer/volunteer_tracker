@@ -23,7 +23,11 @@ class Project
       projects.push(Project.new(project))
       end
     projects
+  end
 
+  def self.find(id)
+    project = DB.exec("SELECT * from projects WHERE id = #{id}")
+    project = Project.new(project.first)
   end
 
 end
