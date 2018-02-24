@@ -34,7 +34,7 @@ class Project
     returned_volunteers = DB.exec("SELECT * from volunteers WHERE project_id = #{id}")
     volunteers = []
     returned_volunteers.each() do |volunteer|
-      volunteers.push(Project.new(volunteer))
+      volunteers.push(Volunteer.new(volunteer))
       end
     volunteers
   end
@@ -46,7 +46,7 @@ class Project
 
   def delete
     DB.exec("DELETE FROM projects WHERE id = #{@id};")
-
+    DB.exec("UPDATE volunteers SET project_id = 0 WHERE project_id = #{@id};")
   end
 
 end

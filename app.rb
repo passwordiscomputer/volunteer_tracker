@@ -9,13 +9,21 @@ require 'pry'
 DB = PG.connect({:dbname => 'volunteer_tracker'})
 
 get('/') do
+  @project_list = Project.all
+  erb(:home)
+end
+
+post('/')do
+binding.pry
+  @project = Project.find(params[:id])
+  @project.delete
+  @project_list = Project.all
   erb(:home)
 end
 
 post('/projects') do
   project = Project.new(params)
   project.save
-  binding.pry
   @project_list = Project.all
   erb(:projects)
 end
@@ -28,6 +36,7 @@ end
 get('/volunteers') do
   @project_list = Project.all
   @volunteer_list = Volunteer.all
+
   erb(:volunteers)
 end
 
@@ -35,7 +44,6 @@ post('/volunteers') do
   volunteer = Volunteer.new(params)
   volunteer.save
   @volunteer_list = Volunteer.all
-  binding.pry
   @project_list = Project.all
   erb(:volunteers)
 end
@@ -52,6 +60,18 @@ post('/volunteers/:id') do
   @volunteer.update(params)
   @project_list = Project.all
   @project = Project.find(@volunteer.project_id)
-  binding.pry
   erb(:volunteer)
+end
+
+get('/projects/:id') do
+  @project = Project.find(params[:id])
+  @volunteer_list = @project.volunteers
+  erb(:project)
+end
+
+post('/projects/:id') do
+  @project = Project.find(params[:id])
+  @volunteer_list = @project.volunteers
+  @project.update(params)
+  erb(:project)
 end
