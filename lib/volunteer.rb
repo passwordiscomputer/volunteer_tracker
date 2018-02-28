@@ -35,5 +35,4 @@ class Volunteer
     @name = attributes[:name]
   end
 
-
 end

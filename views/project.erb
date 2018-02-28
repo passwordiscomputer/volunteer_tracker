@@ -20,6 +20,7 @@
 </div>
 <form action="/projects/<%= @project.id %>" method="post">
   <p><input class="w3-input w3-padding-16" type="text" placeholder="Edit Project Title" required name="title"></p>
+    <input name="_method" type="hidden" value="patch">
     <button class="w3-button w3-light-grey w3-padding-large" type="submit">
       <i class="far fa-hand-peace"></i> &nbsp;&nbsp;Edit project title
     </button>
@@ -27,6 +28,7 @@
 </form>
 <form action="/" method="post">
   <p><input class="w3-input w3-padding-16" type="hidden" required name="id" value="<%= @project.id %>"></p>
+    <input name="_method" type="hidden" value="delete">
     <button class="w3-button w3-light-grey w3-padding-large" type="submit">
       <i class="far fa-hand-peace"></i> &nbsp;&nbsp;Delete Project&nbsp;&nbsp;&nbsp;
     </button>

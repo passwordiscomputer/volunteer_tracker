@@ -17,6 +17,7 @@
   <form action="/volunteers/<%= @volunteer.id %>" method="post">
     <p>Change name
       <p><input class="w3-input w3-padding-16" type="text" placeholder="Enter New Name" required name="name"></p>
+        <input name="_method" type="hidden" value="patch">
     <button class="w3-button w3-light-grey w3-padding-large" type="submit">
       <i class="far fa-hand-peace"></i> &nbsp;&nbsp;Change Name
     </button>

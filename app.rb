@@ -13,8 +13,7 @@ get('/') do
   erb(:home)
 end
 
-post('/')do
-binding.pry
+delete('/')do
   @project = Project.find(params[:id])
   @project.delete
   @project_list = Project.all
@@ -55,7 +54,7 @@ get('/volunteers/:id') do
   erb(:volunteer)
 end
 
-post('/volunteers/:id') do
+patch('/volunteers/:id') do
   @volunteer = Volunteer.find(params[:id])
   @volunteer.update(params)
   @project_list = Project.all
@@ -69,7 +68,7 @@ get('/projects/:id') do
   erb(:project)
 end
 
-post('/projects/:id') do
+patch('/projects/:id') do
   @project = Project.find(params[:id])
   @volunteer_list = @project.volunteers
   @project.update(params)

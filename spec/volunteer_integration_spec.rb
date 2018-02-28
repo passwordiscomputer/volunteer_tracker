@@ -17,7 +17,6 @@ describe 'the project creation path', {:type => :feature} do
     visit '/'
     fill_in('title', :with => 'Teaching Kids to Code')
     fill_in('details', :with => 'Teaching Kids to Code')
-    save_and_open_page
     click_button('CHANGE LIVES')
     expect(page).to have_content('Teaching Kids to Code')
   end
